@@ -25,7 +25,7 @@ tar -xvf juno-phoenix-genesis.tar.gz -C $HOME/.juno/config
 # i.e. cat $HOME/juno/config/genesis.json | jq '.chain_id'
 cat $HOME/.juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .chain_id + " - Initial Height: " + .initial_height'
 
-# check hash
+# check hash - returns de3db1f58f612b0706eef5bee8f83fa46b9dcd1159efe582c33f3d1907434f7a
 shasum -a 256 $HOME/.juno/config/genesis.json
 ```
 
@@ -40,10 +40,6 @@ tar -xvf juno-phoenix-genesis.tar.gz -C $HOME/.juno/config
 # i.e. cat $HOME/juno/config/genesis.json | jq '.chain_id'
 cat $HOME/.juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .chain_id + " - Initial Height: " + .initial_height'
 
-# check hash
+# check hash - returns de3db1f58f612b0706eef5bee8f83fa46b9dcd1159efe582c33f3d1907434f7a
 shasum -a 256 $HOME/.juno/config/genesis.json
 ```
-
-### Expected Genesis Hash
-
-`de3db1f58f612b0706eef5bee8f83fa46b9dcd1159efe582c33f3d1907434f7a`
