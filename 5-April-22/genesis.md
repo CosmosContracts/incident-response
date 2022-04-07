@@ -46,4 +46,4 @@ shasum -a 256 $HOME/.juno/config/genesis.json
 
 ### Expected Genesis Hash
 
-`a957ad217d2f83b4aa8d73d49d24470f3c9d2c0f4eebd21d18ee912911671b99`
+`de3db1f58f612b0706eef5bee8f83fa46b9dcd1159efe582c33f3d1907434f7a`

@@ -119,7 +119,7 @@ cat $HOME/juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " â€
 
 ```sh
 jq -S -c -M '' ~/.juno/config/genesis.json | sha256sum
-7d5041fa2475952e7db4f1d590a851628d08dac02cb3a616bd59b4f7d3e2a999  -
+a12e2c6749863b05e5ad5baa7ae307fd352cae2186d9e0c4bfdbf9e39522bb0d  -
 ```
 
 ### 10. Apply genesis
