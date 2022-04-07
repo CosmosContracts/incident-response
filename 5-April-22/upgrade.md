@@ -89,6 +89,14 @@ cp ~/go/bin/junod ~/.juno/cosmovisor/genesis/bin
 rm ~/.juno/cosmovisor/current
 ```
 
+Check junod has copied to the new location.
+```sh
+ ~/.juno/cosmovisor/genesis/bin/junod version
+
+# returns
+v3.0.0
+```
+
 ### 8. Download the new genesis
 This genesis is a state-export of the previous juno chain, saving all previous transactions.
 ```sh
