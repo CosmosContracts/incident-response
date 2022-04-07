@@ -11,6 +11,10 @@ cat genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .c
 ### Genesis Link
 
 - https://ezstaking.io/genesis.json
+- https://snapshots.ezstaking.io/genesis.json
+- https://static.ezstaking.io/genesis.json
+- https://static-2.ezstaking.io/genesis.json
+- https://static-3.ezstaking.io/genesis.json
 
 ### Expected Genesis Hash
 
