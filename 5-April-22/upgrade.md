@@ -137,4 +137,4 @@ Nope! We are effectively starting from "block 0" of the new genesis. Similarly, 
 These will be auto-claimed for you. Therefore, they are safe!
 
 ### How was the new genesis created?
-The current state of juno-1 was exported from block ***96, one block before to the problematic one, then converted into a genesis file. Essentially that means all previously state was backed up as-is. Instructions for creating the genesis can be found here: https://github.com/CosmosContracts/incident-response/blob/main/5-April-22/genesis.md
+The current state of juno-1 was exported from block `2578096`, one block before to the problematic one, then converted into a genesis file. Essentially that means all previously state was backed up as-is. Instructions for creating the genesis can be found here: https://github.com/CosmosContracts/incident-response/blob/main/5-April-22/genesis.md
