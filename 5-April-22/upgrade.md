@@ -105,6 +105,7 @@ v3.0.0
 To build yourself or check options, [read more here](./genesis.md).
 
 ```sh
+rm ~/.juno/config/genesis.json
 wget https://juno-phoenix-97.s3.eu-west-1.amazonaws.com/juno-phoenix-genesis.tar.gz
 tar -xvf juno-phoenix-genesis.tar.gz -C $HOME/.juno/config
 
