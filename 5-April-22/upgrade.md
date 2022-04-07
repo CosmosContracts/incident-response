@@ -85,6 +85,7 @@ rm ~/.juno/cosmovisor/genesis/bin/junod
 rm -rf ~/.juno/cosmovisor/upgrades
 mkdir ~/.juno/cosmovisor/upgrades
 cp ~/go/bin/junod ~/.juno/cosmovisor/genesis/bin
+rm ~/.juno/cosmovisor/current
 ```
 
 ### 8. Download the new genesis
