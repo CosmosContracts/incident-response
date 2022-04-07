@@ -1,5 +1,5 @@
 # Juno April 5, 2022 Chain Halt Upgrade
-This upgrade is effectively a hard fork with the same chain-id. What this means, is we'll need to delete all previous data and start from a new genesis.
+This upgrade is effectively a hard fork with the same chain-id. This means we'll need to delete all previous data and start from a new genesis.
 
 NOTE: This assumes you've already ran through setting up a juno node here: https://docs.junonetwork.io/validators/getting-setup
 
@@ -96,3 +96,6 @@ Nope! We are effectively starting from "block 0" of the new genesis. Similarly, 
 
 ### What about staking rewards and/or commission?
 These will be auto-claimed for you. Therefore, they are safe!
+
+### How was the new genesis created?
+The current state of juno-1 was exported from block ***96, one block before to the problematic one, then converted into a genesis file. Essentially that means all previously state was backed up as-is. Instructions for creating the genesis can be found here: https://github.com/CosmosContracts/incident-response/blob/main/5-April-22/genesis.md
