@@ -6,7 +6,7 @@ NOTE: This assumes you've already ran through setting up a juno node here: https
 ## Performing the  Upgrade
 
 ### 1. Stop the node
-```
+```sh
 sudo systemctl stop junod
 ```
 
@@ -37,7 +37,7 @@ junod unsafe-reset-all
 
 ### 5. Purge current peers and addrbook
 This is done to ensure all peers are clean when moving forward.
-```
+```sh
 rm ~/.juno/config/addrbook.json
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"\"/" ~/.juno/config/config.toml
 sed -i.bak -e "s/^seeds *=.*/seeds = \"\"/" ~/.juno/config/config.toml
@@ -45,7 +45,7 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"\"/" ~/.juno/config/config.toml
 
 ### 6. Add seeds and peers
 These are all verified to be using the new genesis file.
-```
+```sh
 SEEDS=
 PEERS=
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.juno/config/config.toml
@@ -56,7 +56,7 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.juno/
 
 #### 7a. Install junod v3.0.0
 This new binary includes the Lupercalia security upgrade.
-```
+```sh
 git clone https://github.com/CosmosContracts/juno
 cd juno
 git fetch
@@ -65,13 +65,13 @@ make install
 ```
 
 To confirm the correct binary is installed, do:
-```
+```sh
 junod version --long
 ```
 
 (TEMP - NEEDS TO BE REPLACED)
 
-```
+```sh
 name: juno
 server_name: junod
 version: v2.1.0
@@ -82,7 +82,7 @@ go: go version go1.17.3 linux/amd64
 
 #### 7c. [OPTIONAL] If you use cosmovisor
 You will need to re-setup cosmovisor with the new genesis.
-```
+```sh
 rm ~/.juno/cosmovisor/genesis/bin/junod
 rm -rf ~/.juno/cosmovisor/upgrades
 mkdir ~/.juno/cosmovisor/upgrades
@@ -91,24 +91,30 @@ cp ~/go/bin/junod ~/.juno/cosmovisor/genesis/bin
 
 ### 8. Download the new genesis
 This genesis is a state-export of the previous juno chain, saving all previous transactions.
-```sh:
+```sh
 curl TEMP_NEED_URL_PATH > ~/.juno/config/genesis.json
 ```
 
 ### 9. Verify genesis shasum
 (TEMP, ALSO NOT CORRECT!)
-```sh:
+```sh
 jq -S -c -M '' ~/.juno/config/genesis.json | sha256sum
 [shasum to be added]  -
 ```
 
-### 10. Start the node
+### 10. Apply genesis
+This is necessary in order to apply the genesis to the newly installed binary.
+```sh
+junod unsafe-reset-all
 ```
+
+### 11. Start the node
+```sh
 sudo systemctl restart junod
 ```
 
-### 11. Confirm the process running
-```
+### 12. Confirm the process running
+```sh
 sudo journalctl -fu junod
 ```
 
