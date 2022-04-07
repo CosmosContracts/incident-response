@@ -1,15 +1,16 @@
+# Juno April 5, 2022 Chain Halt Upgrade
 This upgrade is effectively a hard fork with the same chain-id. What this means, is we'll need to delete all previous data and start from a new genesis.
 
 NOTE: This assumes you've already ran through setting up a juno node here: https://docs.junonetwork.io/validators/getting-setup
 
-### Upgrade
+## Performing the  Upgrade
 
-1. Stop the node
+### 1. Stop the node
 ```
 sudo systemctl stop junod
 ```
 
-2. Backup ~/.juno/config/priv_validator_key.json
+### 2. Backup ~/.juno/config/priv_validator_key.json
 This is only relevant if you're upgrading your validator. Your priv_validator_key.json is how your validator is identified. If you haven't backed it up already, *DO SO NOW*.
 
 An example method for doing so is as follows, which will copy it to the home dir:
@@ -18,14 +19,14 @@ cd ~
 cp ~/.juno/config/priv_validato_state.json .
 ```
 
-3. Delete previous chain state
+### 3. Delete previous chain state
 Because we'll be starting from a new genesis, the previous data is no longer necessary. Similarly, the priv_validator_state.json is not necessary because there is no previous block to sign from.
 
 ```sh
 junod unsafe-reset-all
 ```
 
-4. Download and install the new binary
+### 4. Download and install the new binary
 ```
 git clone https://github.com/CosmosContracts/juno
 cd juno
@@ -50,17 +51,24 @@ build_tags: netgo muslc,
 go: go version go1.17.3 linux/amd64
 ```
 
-5. Download the new genesis
+### 5. Download the new genesis
 ```sh:
 curl TEMP_NEED_URL_PATH > ~/.juno/config/genesis.json
 ```
 
-6. Start the node
+### 6. Verify genesis shasum
+(TEMP, ALSO NOT CORRECT!)
+```sh:
+jq -S -c -M '' ~/.juno/config/genesis.json | sha256sum
+6118cdee38533abdb92b54a296da7eee640f1b40aff8f72aa48c3af4e6de4e57  -
+```
+
+### 7. Start the node
 ```
 sudo systemctl restart junod
 ```
 
-7. Confirm it's running
+### 8. Confirm it's running
 ```
 sudo journalctl -fu junod
 ```
@@ -69,6 +77,8 @@ The output should be as follows:
 ```
 4:58AM INF Genesis time is in the future. Sleeping until then... genTime=2022-04-07T21:00:00Z
 ```
+
+---
 
 ### FAQ
 #### What about the gov prop upgrade?
