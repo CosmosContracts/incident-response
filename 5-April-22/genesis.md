@@ -12,3 +12,7 @@ cat juno-2-96.json | jq '.genesis_time'; cat juno-2-96.json | jq '.chain_id'; jq
 ### Genesis Link
 
 - https://ezstaking.io/juno-96.json
+
+### Expected Genesis Hash
+
+`024ccdee29047e84aef81eec394ae28b7bbd94f1872225824f26ea2c01706faa`
