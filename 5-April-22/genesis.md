@@ -24,5 +24,5 @@ shasum -a 256 $HOME/.juno/config/genesis.json
 
 ```sh
 jq -S -c -M '' $HOME/.juno/config/genesis.json | sha256sum
-1839fcf10ade35b81aad83bc303472bd0e9832efb0ab2382b382e3cc07b265e0  -
+36753f4f726aec8816dc38fa2453e4e70f8f4fccf0f0458e71ee37f362d758f1  -
 ```
