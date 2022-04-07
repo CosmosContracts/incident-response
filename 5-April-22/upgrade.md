@@ -106,7 +106,7 @@ v3.0.0
 To build yourself or check options, [read more here](./genesis.md).
 
 ```sh
-wget https://genesis.kingnodes.com/juno-phoenix-genesis.tar.gz
+wget https://juno-phoenix.s3.eu-west-1.amazonaws.com/juno-phoenix-genesis.tar.gz
 tar -xvf juno-phoenix-genesis.tar.gz -C $HOME/.juno/config
 
 # check chain is juno-1, genesis time is correct & initial block is 2578099
@@ -119,7 +119,7 @@ cat $HOME/.juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " â
 
 ```sh
 jq -S -c -M '' ~/.juno/config/genesis.json | sha256sum
-a12e2c6749863b05e5ad5baa7ae307fd352cae2186d9e0c4bfdbf9e39522bb0d  -
+1839fcf10ade35b81aad83bc303472bd0e9832efb0ab2382b382e3cc07b265e0  -
 ```
 
 ### 10. Apply genesis
