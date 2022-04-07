@@ -9,7 +9,7 @@ const contractStateRegex = /{"contract_address":"juno188lvtzkvjjhgzrakha6qdg3zlv
 const upgradeProposalRegex = /"@type":"\/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal","description":"# Juno Lupercalia Phase 1.*"upgraded_client_state":null},/
 
 // removes "plan" property and changes type to text
-const replacedAsTextProposalWithNote = '"@type":"/cosmos.gov.v1beta1.TextProposal","description":"# Juno Lupercalia Phase 1\\\\n\\\\nNote: this upgrade _takes no direct action on the ongoing CCN issue_.\\\\n\\\\nThis upgrade is functional in nature, and contains:\\\\n\\\\n* Security fixes\\\\n* Performance improvements\\\\n* An upgrade to CosmWasm/wasmd 0.24.0\\\\n* Moves Juno to mainline CosmWasm/wasmd rather than a fork\\\\n* Upgrades to Cosmos SDK 45 and Tendermint 0.34.16\\\\n\\\\nCrucially, the upgrades to the CosmWasm module allow for _governance to execute smart contracts_.\\\\n\\\\nThis feature is required by the Unity Prop Smart Contract.\\\\n\\\\nThe target block for this upgrade is 2582000, which should arrive +/- an hour of 1700UTC on Tuesday 5th April 2022.\\\\n\\\\nFor more information, you can read [this post](https://medium.com/@JunoNetwork/jun%C3%B8-lupercalia-upgrade-89b7f3a7bfdc) on the Juno Medium.\\\\n\\\\nTo see the full changelog, [go here](https://github.com/CosmosContracts/juno/releases/tag/v2.3.0).\\\\n\\\\nNOTE: this proposal was changed to a text proposal due to the chain halt on 4/4/2022. This upgrade was applied upon chain restart at block 2578099.\\\\n\\\\n",'
+const replacedAsTextProposalWithNote = '"@type":"/cosmos.gov.v1beta1.TextProposal","description":"# Juno Lupercalia Phase 1\\\\n\\\\nNote: this upgrade _takes no direct action on the ongoing CCN issue_.\\\\n\\\\nThis upgrade is functional in nature, and contains:\\\\n\\\\n* Security fixes\\\\n* Performance improvements\\\\n* An upgrade to CosmWasm/wasmd 0.24.0\\\\n* Moves Juno to mainline CosmWasm/wasmd rather than a fork\\\\n* Upgrades to Cosmos SDK 45 and Tendermint 0.34.16\\\\n\\\\nCrucially, the upgrades to the CosmWasm module allow for _governance to execute smart contracts_.\\\\n\\\\nThis feature is required by the Unity Prop Smart Contract.\\\\n\\\\nThe target block for this upgrade is 2582000, which should arrive +/- an hour of 1700UTC on Tuesday 5th April 2022.\\\\n\\\\nFor more information, you can read [this post](https://medium.com/@JunoNetwork/jun%C3%B8-lupercalia-upgrade-89b7f3a7bfdc) on the Juno Medium.\\\\n\\\\nTo see the full changelog, [go here](https://github.com/CosmosContracts/juno/releases/tag/v2.3.0).\\\\nNOTE: this proposal was changed to a text proposal due to the chain halt on 4/4/2022. This upgrade was applied upon chain restart at block 2578099.\\\\n\\\\n",'
 
 const newGenesisTime = "2022-04-07T21:00:00Z"
 const newInitialHeight = "2578099"
@@ -21,8 +21,8 @@ const unchangedFile = fs.readFileSync(process.argv[2])
 const outputFileName = process.argv[3]
 
 // hack for 512MB string limit in node
-const firstChunk = unchangedFile.slice(0, 0x1f0fffe8).toString()
-const secondChunk = unchangedFile.slice(0x1f0fffe8).toString()
+const firstChunk = unchangedFile.slice(0, 0x1f0fffe8).toString('utf8')
+const secondChunk = unchangedFile.slice(0x1f0fffe8).toString('utf8')
 
 console.log('first chunk matches upgrade', firstChunk.match(upgradeProposalRegex) != null)
 console.log('second chunk matches contract', secondChunk.match(contractStateRegex) != null)
@@ -36,5 +36,5 @@ const replacedSecondChunk = secondChunk
 .replace(genesisTimeRegex, `"genesis_time":"${newGenesisTime}",`)
 .replace(contractStateRegex, reinitializedContractState)
 
-fs.writeFileSync(outputFileName, replacedFirstChunk)
-fs.appendFileSync(outputFileName, replacedSecondChunk)
+fs.writeFileSync(outputFileName, replacedFirstChunk, {encoding: 'utf8'})
+fs.appendFileSync(outputFileName, replacedSecondChunk, {encoding: 'utf8'})
