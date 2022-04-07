@@ -11,13 +11,15 @@ sudo systemctl stop junod
 ```
 
 ### 2. Backup ~/.juno/config/priv_validator_key.json
-This is only relevant if you're upgrading your validator. Your priv_validator_key.json is how your validator is identified. If you haven't backed it up already, *DO SO NOW*.
+This is only relevant if you're upgrading your validator. Your priv_validator_key.json is how your validator is identified. If you haven't backed it up already, **DO SO NOW**.
 
-An example method for doing so is as follows, which will copy it to the home dir:
+An example method for doing so is as follows, which will copy your validator key to the home dir:
 ```sh
 cd ~
 cp ~/.juno/config/priv_validato_state.json .
 ```
+
+*NOTE*: keeping your copy of the validator key on the same machine is NOT sufficient.
 
 ### 3. Delete previous chain state
 Because we'll be starting from a new genesis, the previous data is no longer necessary. Similarly, the priv_validator_state.json is not necessary because there is no previous block to sign from.
@@ -27,6 +29,7 @@ junod unsafe-reset-all
 ```
 
 ### 4. Download and install the new binary
+This new binary includes the Lupercalia security upgrade.
 ```
 git clone https://github.com/CosmosContracts/juno
 cd juno
@@ -52,6 +55,7 @@ go: go version go1.17.3 linux/amd64
 ```
 
 ### 5. Download the new genesis
+This genesis is a state-export of the previous juno chain, saving all previous transactions.
 ```sh:
 curl TEMP_NEED_URL_PATH > ~/.juno/config/genesis.json
 ```
@@ -60,7 +64,7 @@ curl TEMP_NEED_URL_PATH > ~/.juno/config/genesis.json
 (TEMP, ALSO NOT CORRECT!)
 ```sh:
 jq -S -c -M '' ~/.juno/config/genesis.json | sha256sum
-6118cdee38533abdb92b54a296da7eee640f1b40aff8f72aa48c3af4e6de4e57  -
+[shasum to be added]  -
 ```
 
 ### 7. Start the node
