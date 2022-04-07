@@ -36,9 +36,8 @@ junod unsafe-reset-all
 ```
 
 ### 5. Purge current peers and addrbook
-This is done to ensure all peers are clean when moving forward.
+This is done to ensure all peers are clean when moving forward. The addrbook.json file was purged in the previous step.
 ```sh
-rm ~/.juno/config/addrbook.json
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"\"/" ~/.juno/config/config.toml
 sed -i.bak -e "s/^seeds *=.*/seeds = \"\"/" ~/.juno/config/config.toml
 ```
