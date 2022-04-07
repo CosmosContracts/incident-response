@@ -18,11 +18,15 @@ Root cause has been identified. Two paths are being explored. One path is to res
     * [ ] Increment `.initial_height` in the export to be 99
     * [ ] Remove lupercalia upgrade proposal and votes from state
     * [ ] additional TBD modifications
-- [ ] Test upgrade using ibc test framework to impersonate the top 29 validators (@agouin and @jackzampolin)
-    * [ ] Make list of their valoper keys 
-    * [ ] Generate the new validator set
-    * [ ] Find and replace all instances of one validator's key with the new validator's key
-    * [ ] start the network and ensure that it runs smoothly
+- [ ] Validate [genesis.json](https://drive.google.com/file/d/1hUJlHkTeC44fOYP1YuLsZkz8WT4mmhFQ/view?usp=sharing) (assembled by @gnudrew25 with help of @dimiandre and others) that has these modifications:
+    * [x] Increment `.initial_height` in the export to be 99
+    * [x] Change lupercalia upgrade proposal to a text proposal, add notes about halt and changes to upgrade.
+    * [x] Reset `satoshi-test` contract state to `{"count":0,"owner":"juno1hxkppd7spnvm5s86z2rfze5pndg9wwee8g9x6v","name":""}`
+- [x] Test upgrade using ibc test framework to impersonate the top 29 validators (@agouin and @jackzampolin)
+    * [x] Make list of their valoper keys 
+    * [x] Generate the new validator set
+    * [x] Find and replace all instances of one validator's key with the new validator's key
+    * [x] start the network and ensure that it runs smoothly (network runs smoothly from block 99 on v2.3.1 and v3.0.0-alpha)
     * [ ] TBD testing to ensure validatity of ugprade
 - [ ] Hardfork planning (needs resourcing)
     * [ ] Plan timing of network restart
