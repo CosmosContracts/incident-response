@@ -28,7 +28,6 @@ It's worth backing up your `priv_validator_state.json` in case this upgrade fail
 cd ~
 cp ~/.juno/data/priv_validator_state.json .
 ```
-*NOTE*: Restore priv_validator_state.json file ONLY if we take the alternative path
 
 ### 4. Purge previous chain state and addrbook.json
 Because we'll be starting from a new genesis, the previous data is no longer necessary.
