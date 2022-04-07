@@ -8,14 +8,14 @@ Download it via the links below, and _ensure the hash matches_.
 
 Get from `EZ Staking`:
 
-- http://snapshots.io/juno-phoenix-genesis.tar.gz.1
-- http://static.ezstaking.io/juno-phoenix-genesis.tar.gz.1
-- http://static-2.ezstaking.io/juno-phoenix-genesis.tar.gz.1
-- http://static-3.ezstaking.io/juno-phoenix-genesis.tar.gz.1
-- http://ezstaking.io/juno-phoenix-genesis.tar.gz.1
+- http://snapshots.io/juno-phoenix-genesis.tar.gz
+- http://static.ezstaking.io/juno-phoenix-genesis.tar.gz
+- http://static-2.ezstaking.io/juno-phoenix-genesis.tar.gz
+- http://static-3.ezstaking.io/juno-phoenix-genesis.tar.gz
+- http://ezstaking.io/juno-phoenix-genesis.tar.gz
 
 ```sh
-wget http://snapshots.io/juno-phoenix-genesis.tar.gz.1
+wget http://snapshots.io/juno-phoenix-genesis.tar.gz
 tar -xvf juno-phoenix-genesis.tar.gz -C $HOME/.juno/config
 # check chain is juno-1, genesis time is correct & initial block is 2578099
 # note if using zsh that you may need to break this up, and run steps individually
