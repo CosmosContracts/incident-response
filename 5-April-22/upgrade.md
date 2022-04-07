@@ -45,8 +45,8 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"\"/" ~/.juno/config/config.toml
 ### 6. Add seeds and peers to config.toml
 These are all verified to be using the new genesis file and binary.
 ```sh
-SEEDS=
-PEERS=
+SEEDS=""
+PEERS="0dbe490d756c1c76d31c1c2dcd41b3e1036d0977@159.65.122.4:26656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.juno/config/config.toml
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.juno/config/config.toml
 ```
