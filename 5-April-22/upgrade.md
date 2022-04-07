@@ -128,12 +128,23 @@ This is necessary in order to apply the genesis to the newly installed binary.
 junod unsafe-reset-all
 ```
 
-### 11. Start the node
+### 11. Restore priv_validator_key.json and priv_validator_state.json
+
+**Important** By resetting the state we also resetted the validator sign state, which may cause double sign. We need to restore our backup to prevent this. 
+
+If you are using a remote signer this step is probably not needed
+
+```sh
+cp ~/priv_validator_state.json ~/.juno/data/priv_validator_state.json
+cp ~/priv_validator_key.json ~/.juno/config/priv_validator_key.json
+```
+
+### 12. Start the node
 ```sh
 sudo systemctl restart junod
 ```
 
-### 12. Confirm the process running
+### 13. Confirm the process running
 ```sh
 sudo journalctl -fu junod
 ```
