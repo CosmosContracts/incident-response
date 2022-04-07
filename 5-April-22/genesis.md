@@ -16,7 +16,18 @@ cat genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .c
 
 Get from `Null`:
 
+```sh
+wget https://genesis.kingnodes.com/juno-phoenix-genesis.tar.gz
+tar -xvf juno-phoenix-genesis.tar.gz -C $HOME/.juno/config
 
+# check chain is juno-1, genesis time is correct & initial block is 2578099
+# note if using zsh that you may need to break this up, and run steps individually
+# i.e. cat $HOME/juno/config/genesis.json | jq '.chain_id'
+cat $HOME/juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .chain_id + " - Initial Height: " + .initial_height'
+
+# check hash
+shasum -a 256 $HOME/.juno/config/genesis.json
+```
 
 Spend `the-frey`'s money by using S3:
 
@@ -24,8 +35,10 @@ Spend `the-frey`'s money by using S3:
 wget https://juno-phoenix.s3.eu-west-1.amazonaws.com/juno-phoenix-genesis.tar.gz
 tar -xvf juno-phoenix-genesis.tar.gz -C $HOME/.juno/config
 
-# check initial block is 2578099
-cat $HOME/.juno/config/genesis.json | jq '.initial_height'
+# check chain is juno-1, genesis time is correct & initial block is 2578099
+# note if using zsh that you may need to break this up, and run steps individually
+# i.e. cat $HOME/juno/config/genesis.json | jq '.chain_id'
+cat $HOME/juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .chain_id + " - Initial Height: " + .initial_height'
 
 # check hash
 shasum -a 256 $HOME/.juno/config/genesis.json

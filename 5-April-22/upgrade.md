@@ -49,7 +49,7 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"\"/" ~/.juno/config/config.toml
 ### 6. Add seeds and peers to config.toml
 These are all verified to be using the new genesis file and binary.
 
-These should be added manually if you are running a sentries setup, or you will blank out your peers.
+**WARNING:** These should be added manually if you are running a sentries setup, or you will blank out your peers.
 ```sh
 SEEDS=""
 PEERS="0dbe490d756c1c76d31c1c2dcd41b3e1036d0977@159.65.122.4:26656"
@@ -73,8 +73,6 @@ To confirm the correct binary is installed, do:
 ```sh
 junod version --long
 ```
-
-(TEMP - NEEDS TO BE REPLACED)
 
 ```sh
 name: juno
@@ -103,17 +101,25 @@ $DAEMON_HOME/cosmovisor/genesis/bin/junod version
 v3.0.0
 ```
 
-### 8. Download the new genesis
-This genesis is a state-export of the previous juno chain, saving all previous transactions.
+### 8. Download the phoenix genesis
+
+To build yourself or check options, [read more here](./genesis.md).
+
 ```sh
-curl TEMP_NEED_URL_PATH > ~/.juno/config/genesis.json
+wget https://genesis.kingnodes.com/juno-phoenix-genesis.tar.gz
+tar -xvf juno-phoenix-genesis.tar.gz -C $HOME/.juno/config
+
+# check chain is juno-1, genesis time is correct & initial block is 2578099
+# note if using zsh that you may need to break this up, and run steps individually
+# i.e. cat $HOME/juno/config/genesis.json | jq '.chain_id'
+cat $HOME/juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .chain_id + " - Initial Height: " + .initial_height'
 ```
 
 ### 9. Verify genesis shasum
-(TEMP, ALSO NOT CORRECT!)
+
 ```sh
 jq -S -c -M '' ~/.juno/config/genesis.json | sha256sum
-[shasum to be added]  -
+7d5041fa2475952e7db4f1d590a851628d08dac02cb3a616bd59b4f7d3e2a999  -
 ```
 
 ### 10. Apply genesis
