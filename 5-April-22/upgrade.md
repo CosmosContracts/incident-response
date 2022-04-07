@@ -29,7 +29,7 @@ cp ~/.juno/data/priv_validator_state.json .
 ```
 
 ### 4. Delete previous chain state
-Because we'll be starting from a new genesis, the previous data is no longer necessary. Similarly, the priv_validator_state.json is not necessary because there is no previous block to sign from.
+Because we'll be starting from a new genesis, the previous data is no longer necessary.
 
 ```sh
 junod unsafe-reset-all
