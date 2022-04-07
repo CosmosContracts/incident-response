@@ -51,6 +51,8 @@ cat juno-96.json | jq -r '.chain_id = "juno-1" | .genesis_time = "2022-04-07T21:
 
 Then you just have to make a diff between genesis.json and your original genesis.json file
 
+The only one difference expected that will exist is the modification of the last proposal and the consistency of the data for the devil contract 
+
 ## Check sorted shasum
 
 ```sh
