@@ -28,22 +28,21 @@ cd ~
 cp ~/.juno/data/priv_validator_state.json .
 ```
 
-### 4. Delete previous chain state
+### 4. Purge previous chain state and addrbook.json
 Because we'll be starting from a new genesis, the previous data is no longer necessary.
-
 ```sh
 junod unsafe-reset-all
 ```
 
-### 5. Purge current peers and addrbook
-This is done to ensure all peers are clean when moving forward. The addrbook.json file was purged in the previous step.
+### 5. Purge current peers and seeds from config.toml
+This is done to ensure all peers are clean when moving forward. The addrbook.json file was already purged in the previous step.
 ```sh
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"\"/" ~/.juno/config/config.toml
 sed -i.bak -e "s/^seeds *=.*/seeds = \"\"/" ~/.juno/config/config.toml
 ```
 
-### 6. Add seeds and peers
-These are all verified to be using the new genesis file.
+### 6. Add seeds and peers to config.toml
+These are all verified to be using the new genesis file and binary.
 ```sh
 SEEDS=
 PEERS=
