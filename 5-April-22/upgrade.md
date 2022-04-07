@@ -1,4 +1,5 @@
 # Juno April 5, 2022 Chain Halt Upgrade
+
 This upgrade is effectively a hard fork with the same chain-id. This means we'll need to delete all previous data and start from a new genesis.
 
 NOTE: This assumes you've already ran through setting up a juno node here: https://docs.junonetwork.io/validators/getting-setup
@@ -37,6 +38,9 @@ junod unsafe-reset-all
 
 ### 5. Purge current peers and seeds from config.toml
 This is done to ensure all peers are clean when moving forward. The addrbook.json file was already purged in the previous step.
+
+**WARNING:** DO NOT DO BLANK PERSISTENT PEERS IF YOU ARE RUNNING SENTRIES. Only remove persistent peers that are not your sentries/val node.
+
 ```sh
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"\"/" ~/.juno/config/config.toml
 sed -i.bak -e "s/^seeds *=.*/seeds = \"\"/" ~/.juno/config/config.toml
@@ -44,6 +48,8 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"\"/" ~/.juno/config/config.toml
 
 ### 6. Add seeds and peers to config.toml
 These are all verified to be using the new genesis file and binary.
+
+**WARNING:** These should be added manually if you are running a sentries setup, or you will blank out your peers.
 ```sh
 SEEDS=""
 PEERS="0dbe490d756c1c76d31c1c2dcd41b3e1036d0977@159.65.122.4:26656"
@@ -60,15 +66,13 @@ git clone https://github.com/CosmosContracts/juno
 cd juno
 git fetch
 git checkout v3.0.0
-make install
+make build && make install
 ```
 
 To confirm the correct binary is installed, do:
 ```sh
 junod version --long
 ```
-
-(TEMP - NEEDS TO BE REPLACED)
 
 ```sh
 name: juno
@@ -82,32 +86,40 @@ go: go version go1.17.1 linux/amd64
 #### 7c. [OPTIONAL] If you use cosmovisor
 You will need to re-setup cosmovisor with the new genesis.
 ```sh
-rm ~/.juno/cosmovisor/genesis/bin/junod
-rm -rf ~/.juno/cosmovisor/upgrades
-mkdir ~/.juno/cosmovisor/upgrades
-cp ~/go/bin/junod ~/.juno/cosmovisor/genesis/bin
-rm ~/.juno/cosmovisor/current
+rm $DAEMON_HOME/cosmovisor/genesis/bin/junod
+rm -rf $DAEMON_HOME/cosmovisor/upgrades
+mkdir $DAEMON_HOME/cosmovisor/upgrades
+cp $HOME/go/bin/junod $DAEMON_HOME/cosmovisor/genesis/bin
+rm $DAEMON_HOME/cosmovisor/current
 ```
 
 Check junod has copied to the new location.
 ```sh
- ~/.juno/cosmovisor/genesis/bin/junod version
+$DAEMON_HOME/cosmovisor/genesis/bin/junod version
 
 # returns
 v3.0.0
 ```
 
-### 8. Download the new genesis
-This genesis is a state-export of the previous juno chain, saving all previous transactions.
+### 8. Download the phoenix genesis
+
+To build yourself or check options, [read more here](./genesis.md).
+
 ```sh
-curl TEMP_NEED_URL_PATH > ~/.juno/config/genesis.json
+wget https://genesis.kingnodes.com/juno-phoenix-genesis.tar.gz
+tar -xvf juno-phoenix-genesis.tar.gz -C $HOME/.juno/config
+
+# check chain is juno-1, genesis time is correct & initial block is 2578099
+# note if using zsh that you may need to break this up, and run steps individually
+# i.e. cat $HOME/juno/config/genesis.json | jq '.chain_id'
+cat $HOME/juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .chain_id + " - Initial Height: " + .initial_height'
 ```
 
 ### 9. Verify genesis shasum
-(TEMP, ALSO NOT CORRECT!)
+
 ```sh
 jq -S -c -M '' ~/.juno/config/genesis.json | sha256sum
-[shasum to be added]  -
+7d5041fa2475952e7db4f1d590a851628d08dac02cb3a616bd59b4f7d3e2a999  -
 ```
 
 ### 10. Apply genesis
