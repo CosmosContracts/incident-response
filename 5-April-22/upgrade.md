@@ -16,10 +16,10 @@ This is only relevant if you're upgrading your validator. Your priv_validator_ke
 An example method for doing so is as follows, which will copy your validator key to the home dir:
 ```sh
 cd ~
-cp ~/.juno/config/priv_validato_state.json .
+cp ~/.juno/config/priv_validator_key.json .
 ```
 
-*NOTE*: keeping your copy of the validator key on the same machine is NOT sufficient.
+*NOTE*: keeping your copy of the validator key on the same machine is NOT sufficient. At a bare minimum it should be backed up locally so you always have access to it.
 
 ### 3. Delete previous chain state
 Because we'll be starting from a new genesis, the previous data is no longer necessary. Similarly, the priv_validator_state.json is not necessary because there is no previous block to sign from.
