@@ -44,7 +44,7 @@ shasum -a 256 $HOME/.juno/config/genesis.json
 
 If you want to make sure that the genesis has not been corrupted (which is the role of any good validator here is the procedure to follow)
 
-cosmovisor export --height=2578096 2> juno-96.json
+cosmovisor export --height=2578097 2> juno-96.json
 jq '.genesis_time = "2021-10-01T15:00:00Z"' juno-96.json > juno-1-96.json
 jq '.chain_id = "juno-1"' juno-1-96.json > juno-2-96.json
 cat juno-96.json | jq -r '.chain_id = "juno-1" | .genesis_time = "2022-04-07T21:00:00Z" | .initial_height = "2578099"' > genesis.json
