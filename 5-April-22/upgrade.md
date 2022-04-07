@@ -62,7 +62,7 @@ git checkout v3.0.0
 make install
 ```
 
-To confirm the verison, do:
+To confirm the correct binary is installed, do:
 ```
 junod version --long
 ```
