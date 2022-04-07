@@ -53,6 +53,8 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.juno/
 ```
 
 ### 7. Download and install the new binary
+
+#### 7a. Install junod v3.0.0
 This new binary includes the Lupercalia security upgrade.
 ```
 git clone https://github.com/CosmosContracts/juno
@@ -76,6 +78,15 @@ version: v2.1.0
 commit: e6b8c212b178cf575035065b78309aed547b1335
 build_tags: netgo muslc,
 go: go version go1.17.3 linux/amd64
+```
+
+#### 7c. [OPTIONAL] If you use cosmovisor
+You will need to re-setup cosmovisor with the new genesis.
+```
+rm ~/.juno/cosmovisor/genesis/bin/junod
+rm -rf ~/.juno/cosmovisor/upgrades
+mkdir ~/.juno/cosmovisor/upgrades
+cp ~/go/bin/junod ~/.juno/cosmovisor/genesis/bin
 ```
 
 ### 8. Download the new genesis
