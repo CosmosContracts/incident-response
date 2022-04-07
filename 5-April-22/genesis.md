@@ -23,9 +23,9 @@ tar -xvf juno-phoenix-genesis.tar.gz -C $HOME/.juno/config
 # check chain is juno-1, genesis time is correct & initial block is 2578099
 # note if using zsh that you may need to break this up, and run steps individually
 # i.e. cat $HOME/juno/config/genesis.json | jq '.chain_id'
-cat $HOME/juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .chain_id + " - Initial Height: " + .initial_height'
+cat $HOME/.juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .chain_id + " - Initial Height: " + .initial_height'
 
-# check hash
+# check hash - returns de3db1f58f612b0706eef5bee8f83fa46b9dcd1159efe582c33f3d1907434f7a
 shasum -a 256 $HOME/.juno/config/genesis.json
 ```
 
@@ -38,12 +38,15 @@ tar -xvf juno-phoenix-genesis.tar.gz -C $HOME/.juno/config
 # check chain is juno-1, genesis time is correct & initial block is 2578099
 # note if using zsh that you may need to break this up, and run steps individually
 # i.e. cat $HOME/juno/config/genesis.json | jq '.chain_id'
-cat $HOME/juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .chain_id + " - Initial Height: " + .initial_height'
+cat $HOME/.juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .chain_id + " - Initial Height: " + .initial_height'
 
-# check hash
+# check hash - returns de3db1f58f612b0706eef5bee8f83fa46b9dcd1159efe582c33f3d1907434f7a
 shasum -a 256 $HOME/.juno/config/genesis.json
 ```
 
-### Expected Genesis Hash
+## Check sorted shasum
 
-`a957ad217d2f83b4aa8d73d49d24470f3c9d2c0f4eebd21d18ee912911671b99`
+```sh
+jq -S -c -M '' $HOME/.juno/config/genesis.json | sha256sum
+a12e2c6749863b05e5ad5baa7ae307fd352cae2186d9e0c4bfdbf9e39522bb0d  -
+```
