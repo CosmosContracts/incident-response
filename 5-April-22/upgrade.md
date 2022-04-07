@@ -22,7 +22,7 @@ cp ~/.juno/config/priv_validator_key.json .
 *NOTE*: keeping your copy of the validator key on the same machine is NOT sufficient. At a bare minimum it should be backed up locally so you always have access to it.
 
 ### 3. Backup priv_validator_state.json
-In case this upgrade fails, it's worth backing up your `priv_validator_state.json` in case an alternative path must be taken. 
+It's worth backing up your `priv_validator_state.json` in case this upgrade fails and an alternative path must be taken. 
 ```sh
 cd ~
 cp ~/.juno/data/priv_validator_state.json .
