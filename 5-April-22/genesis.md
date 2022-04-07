@@ -43,3 +43,10 @@ cat $HOME/.juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " â
 # check hash - returns de3db1f58f612b0706eef5bee8f83fa46b9dcd1159efe582c33f3d1907434f7a
 shasum -a 256 $HOME/.juno/config/genesis.json
 ```
+
+## Check sorted shasum
+
+```sh
+jq -S -c -M '' $HOME/.juno/config/genesis.json | sha256sum
+a12e2c6749863b05e5ad5baa7ae307fd352cae2186d9e0c4bfdbf9e39522bb0d  -
+```
