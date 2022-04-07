@@ -10,7 +10,7 @@ NOTE: This assumes you've already ran through setting up a juno node here: https
 sudo systemctl stop junod
 ```
 
-### 2. Backup ~/.juno/config/priv_validator_key.json
+### 2. Backup priv_validator_key.json
 This is only relevant if you're upgrading your validator. Your priv_validator_key.json is how your validator is identified. If you haven't backed it up already, **DO SO NOW**.
 
 An example method for doing so is as follows, which will copy your validator key to the home dir:
@@ -21,14 +21,21 @@ cp ~/.juno/config/priv_validator_key.json .
 
 *NOTE*: keeping your copy of the validator key on the same machine is NOT sufficient. At a bare minimum it should be backed up locally so you always have access to it.
 
-### 3. Delete previous chain state
+### 3. Backup priv_validator_state.json
+In case this upgrade fails, it's worth backing up your `priv_validator_state.json` in case an alternative path must be taken. 
+```sh
+cd ~
+cp ~/.juno/data/priv_validator_state.json .
+```
+
+### 4. Delete previous chain state
 Because we'll be starting from a new genesis, the previous data is no longer necessary. Similarly, the priv_validator_state.json is not necessary because there is no previous block to sign from.
 
 ```sh
 junod unsafe-reset-all
 ```
 
-### 4. Download and install the new binary
+### 5. Download and install the new binary
 This new binary includes the Lupercalia security upgrade.
 ```
 git clone https://github.com/CosmosContracts/juno
@@ -54,25 +61,25 @@ build_tags: netgo muslc,
 go: go version go1.17.3 linux/amd64
 ```
 
-### 5. Download the new genesis
+### 6. Download the new genesis
 This genesis is a state-export of the previous juno chain, saving all previous transactions.
 ```sh:
 curl TEMP_NEED_URL_PATH > ~/.juno/config/genesis.json
 ```
 
-### 6. Verify genesis shasum
+### 7. Verify genesis shasum
 (TEMP, ALSO NOT CORRECT!)
 ```sh:
 jq -S -c -M '' ~/.juno/config/genesis.json | sha256sum
 [shasum to be added]  -
 ```
 
-### 7. Start the node
+### 8. Start the node
 ```
 sudo systemctl restart junod
 ```
 
-### 8. Confirm it's running
+### 9. Confirm it's running
 ```
 sudo journalctl -fu junod
 ```
