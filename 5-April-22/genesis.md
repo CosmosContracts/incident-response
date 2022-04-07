@@ -40,6 +40,17 @@ cat $HOME/.juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " â
 shasum -a 256 $HOME/.juno/config/genesis.json
 ```
 
+## Verification
+
+If you want to make sure that the genesis has not been corrupted (which is the role of any good validator here is the procedure to follow)
+
+cosmovisor export --height=2578097 2> juno-97.json
+cat juno-97.json | jq -r '.chain_id = "juno-1" | .genesis_time = "2022-04-07T21:00:00Z" | .initial_height = "2578099"' > genesis.json
+
+Then you just have to make a diff between genesis.json and your original genesis.json file
+
+The only one difference expected that will exist is the modification of the last proposal and the consistency of the data for the devil contract 
+
 ## Check sorted shasum
 
 ```sh
