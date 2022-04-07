@@ -80,15 +80,15 @@ The output should be as follows:
 
 ---
 
-### FAQ
-#### What about the gov prop upgrade?
+## FAQ
+### What about the gov prop upgrade?
 The gov upgrade is being wrapped up into v3.0.0, so **the chain will no longer halt** at `2582000`  per Lupercalia Upgrade: https://www.mintscan.io/juno/proposals/17
 
-#### What about ibc transactions?
+### What about ibc transactions?
 They will time out and be returned to your wallets. 
 
-#### Do I need to resync?
+### Do I need to resync?
 Nope! We are effectively starting from "block 0" of the new genesis. Similarly, all snapshots no longer matter (except archive snapshots, for data integrity purposes). This is the perfect time to create a backup node or sentries if you didn't have them previously.
 
-#### What about staking rewards?
+### What about staking rewards and/or commission?
 These will be auto-claimed for you. Therefore, they are safe!
