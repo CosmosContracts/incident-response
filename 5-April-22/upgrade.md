@@ -73,10 +73,10 @@ junod version --long
 ```sh
 name: juno
 server_name: junod
-version: v2.1.0
-commit: e6b8c212b178cf575035065b78309aed547b1335
-build_tags: netgo muslc,
-go: go version go1.17.3 linux/amd64
+version: v3.0.0
+commit: 268a9c0022d58488b0343c66fdcc5248aec4665d
+build_tags: netgo,ledger
+go: go version go1.17.1 linux/amd64
 ```
 
 #### 7c. [OPTIONAL] If you use cosmovisor
