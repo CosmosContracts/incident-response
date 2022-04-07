@@ -148,7 +148,7 @@ sudo systemctl restart junod
 sudo journalctl -fu junod
 ```
 
-The output should be as follows:
+**The node will take roughly 30 minutes to start**, with 64GB of RAM. After it's finished starting, the output should be as follows:
 ```
 4:58AM INF Genesis time is in the future. Sleeping until then... genTime=2022-04-07T21:00:00Z
 ```
