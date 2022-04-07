@@ -16,6 +16,12 @@ tar -xvf juno-phoenix-genesis.tar.gz -C $HOME/.juno/config
 # note if using zsh that you may need to break this up, and run steps individually
 # i.e. cat $HOME/juno/config/genesis.json | jq '.chain_id'
 cat $HOME/.juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .chain_id + " - Initial Height: " + .initial_height'
+<<<<<<< HEAD
+=======
+
+# check hash - returns 1839fcf10ade35b81aad83bc303472bd0e9832efb0ab2382b382e3cc07b265e0 
+shasum -a 256 $HOME/.juno/config/genesis.json
+>>>>>>> main
 ```
 
 ## Verification
