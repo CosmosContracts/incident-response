@@ -6,10 +6,17 @@ Download it via the links below, and _ensure the hash matches_.
 
 ### Download
 
-Spend `the-frey`'s money by using S3:
+Download juno-phoenix-genesis.tar.gz (105.02 MiB) created by `the-frey`:
 
 ```sh
+# either via IPFS
+ipfs get bafybeicg7e6ird3trbjklxyocjhiao4w65crje5bdp5gq6ypwtknrvetkq --output juno-phoenix-genesis.tar.gz
+# or spend `the-frey`'s money by using S3:
 wget https://juno-phoenix-97.s3.eu-west-1.amazonaws.com/juno-phoenix-genesis.tar.gz
+
+# check hash of downloaded file
+sha256sum juno-phoenix-genesis.tar.gz | grep 1dfa7d3e4a25dedd66da41bf9fdd8481adfeae6304e230ab620c0afcf0a1c004
+
 tar -xvf juno-phoenix-genesis.tar.gz -C $HOME/.juno/config
 
 # check chain is juno-1, genesis time is correct & initial block is 2578099
