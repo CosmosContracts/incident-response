@@ -51,7 +51,7 @@ These are all verified to be using the new genesis file and binary.
 **WARNING:** These should be added manually if you are running a sentries setup, or you will blank out your peers.
 ```sh
 SEEDS="47ba9e0e413e14a778b0c2139d7e49cf3d3c9c07@141.94.195.104:26656"
-PEERS="47ba9e0e413e14a778b0c2139d7e49cf3d3c9c07@141.94.195.104:26656"
+PEERS="47ba9e0e413e14a778b0c2139d7e49cf3d3c9c07@141.94.195.104:26656,21d8a9da7d963db00814447979ffa2ef0f65fee9@54.216.124.105:26656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.juno/config/config.toml
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.juno/config/config.toml
 ```
@@ -98,6 +98,15 @@ $DAEMON_HOME/cosmovisor/genesis/bin/junod version
 
 # returns
 v9.0.0
+
+tree $DAEMON_HOME/cosmovisor
+
+# returns
+$HOME.juno/cosmovisor
+├── genesis
+│   └── bin
+│       └── junod
+└── upgrades
 ```
 
 ### 8. Download the phoenix genesis
@@ -120,11 +129,13 @@ cat $HOME/.juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " �
 
 ```sh
 jq -S -c -M '' ~/.juno/config/genesis.json | sha256sum
-0111ef45823cab4acd3f04afbc9a58a9bd1fe7eff278918abbadc310d7911f3b  -
+
+# this will return
+# 0111ef45823cab4acd3f04afbc9a58a9bd1fe7eff278918abbadc310d7911f3b  -
 ```
 
-### 10. Apply genesis
-This is necessary in order to apply the genesis to the newly installed binary.
+### 10. Be paranoid
+This isn't strictly necessary - you can skip it. However, you might want to be paranoid and just double-check.
 ```sh
 junod tendermint unsafe-reset-all --home $HOME/.juno
 ```
