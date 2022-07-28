@@ -1,5 +1,0 @@
-# Restarting the chain
-
-We will skip block `4136531` and start at `4136532`.
-
-As in the last halt, we will need to delete all data and restart the nodes.
