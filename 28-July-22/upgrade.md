@@ -32,7 +32,7 @@ cp ~/.juno/data/priv_validator_state.json .
 ### 4. Purge previous chain state and addrbook.json
 Because we'll be starting from a new genesis, the previous data is no longer necessary.
 ```sh
-junod unsafe-reset-all
+junod tendermint unsafe-reset-all --home $HOME/.juno
 ```
 
 ### 5. Purge current peers and seeds from config.toml
