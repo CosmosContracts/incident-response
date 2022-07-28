@@ -106,7 +106,7 @@ To build yourself or check options, [read more here](./genesis.md).
 
 ```sh
 rm ~/.juno/config/genesis.json
-wget <TBD>
+wget https://download.dimi.sh/juno-phoenix2-genesis.tar.gz
 tar -xvf juno-phoenix2-genesis.tar.gz -C $HOME/.juno/config
 
 # check chain is juno-1, genesis time is correct & initial block is 4136532
@@ -119,7 +119,7 @@ cat $HOME/.juno/config/genesis.json | jq '"Genesis Time: " + .genesis_time + " â
 
 ```sh
 jq -S -c -M '' ~/.juno/config/genesis.json | sha256sum
-TBD  -
+0111ef45823cab4acd3f04afbc9a58a9bd1fe7eff278918abbadc310d7911f3b  -
 ```
 
 ### 10. Apply genesis
@@ -151,7 +151,7 @@ sudo journalctl -fu junod
 
 **The node will take roughly 30 minutes to start**, with 64GB of RAM. After it's finished starting, the output should be as follows:
 ```
-4:58AM INF Genesis time is in the future. Sleeping until then... genTime=2022-07-28T10:00:00Z
+4:58AM INF Genesis time is in the future. Sleeping until then... genTime=2022-07-28T21:00:00Z
 ```
 
 ---
