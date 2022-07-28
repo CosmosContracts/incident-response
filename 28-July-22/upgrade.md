@@ -107,7 +107,8 @@ To build yourself or check options, [read more here](./genesis.md).
 ```sh
 rm ~/.juno/config/genesis.json
 wget https://download.dimi.sh/juno-phoenix2-genesis.tar.gz
-tar -xvf juno-phoenix2-genesis.tar.gz -C $HOME/.juno/config
+tar -xvf juno-phoenix2-genesis.tar.gz
+mv juno-phoenix2-genesis.json $HOME/.juno/config
 
 # check chain is juno-1, genesis time is correct & initial block is 4136532
 # note if using zsh that you may need to break this up, and run steps individually
