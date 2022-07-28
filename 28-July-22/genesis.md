@@ -39,5 +39,6 @@ The only one difference expected that will exist is the consistency of the data 
 
 ```sh
 jq -S -c -M '' $HOME/.juno/config/genesis.json | sha256sum
-0111ef45823cab4acd3f04afbc9a58a9bd1fe7eff278918abbadc310d7911f3b  -
+# this should return:
+# 0111ef45823cab4acd3f04afbc9a58a9bd1fe7eff278918abbadc310d7911f3b  -
 ```
