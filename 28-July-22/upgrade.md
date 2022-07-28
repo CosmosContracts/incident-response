@@ -126,7 +126,7 @@ jq -S -c -M '' ~/.juno/config/genesis.json | sha256sum
 ### 10. Apply genesis
 This is necessary in order to apply the genesis to the newly installed binary.
 ```sh
-junod unsafe-reset-all
+junod tendermint unsafe-reset-all --home $HOME/.juno
 ```
 
 ### 11. Restore priv_validator_key.json and priv_validator_state.json
