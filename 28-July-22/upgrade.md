@@ -77,9 +77,9 @@ junod version --long
 name: juno
 server_name: junod
 version: v9.0.0
-commit: 268a9c0022d58488b0343c66fdcc5248aec4665d
+commit: e6f9629538a88edf11aa7e7ed3d68c61f8e96aa6
 build_tags: netgo,ledger
-go: go version go1.18.1 linux/amd64
+go: go version go1.18.3 linux/amd64
 ```
 
 #### 7c. [OPTIONAL] If you use cosmovisor
