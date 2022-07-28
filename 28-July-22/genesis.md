@@ -9,6 +9,11 @@ Download it via the links below, and _ensure the hash matches_.
 ```sh
 wget https://download.dimi.sh/juno-phoenix2-genesis.tar.gz
 tar -xvf juno-phoenix2-genesis.tar.gz
+
+# you may want to check the file before moving:
+# cat juno-phoenix2-genesis.json | jq '"Genesis Time: " + .genesis_time + " — Chain ID: " + .chain_id + " - Initial Height: " + .initial_height'
+# note also that if you want to verify as per the instructions below you will need to move the old genesis, something like:
+# mv $HOME/.juno/config/genesis.json $HOME/.juno/config/genesis.json.old
 mv juno-phoenix2-genesis.json $HOME/.juno/config/genesis.json
 
 # check chain is juno-1, genesis time is correct & initial block is 4136532
