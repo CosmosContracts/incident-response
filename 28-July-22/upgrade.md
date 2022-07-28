@@ -51,7 +51,7 @@ These are all verified to be using the new genesis file and binary.
 **WARNING:** These should be added manually if you are running a sentries setup, or you will blank out your peers.
 ```sh
 SEEDS="47ba9e0e413e14a778b0c2139d7e49cf3d3c9c07@141.94.195.104:26656"
-PEERS="47ba9e0e413e14a778b0c2139d7e49cf3d3c9c07@141.94.195.104:26656,21d8a9da7d963db00814447979ffa2ef0f65fee9@54.216.124.105:26656"
+PEERS="0eeb0232a4883c4a57a52af006fc2ad5b64b59b3@49.12.176.139:26656,21d8a9da7d963db00814447979ffa2ef0f65fee9@54.216.124.105:26656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.juno/config/config.toml
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.juno/config/config.toml
 ```
